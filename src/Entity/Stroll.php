@@ -50,8 +50,7 @@ class Stroll
     private $users;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Town::class, inversedBy="strolls")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=50)
      */
     private $town;
 
@@ -152,15 +151,16 @@ class Stroll
         return $this;
     }
 
-    public function getTown(): ?Town
+    public function getTown(): ?string
     {
         return $this->town;
     }
 
-    public function setTown(?Town $town): self
+    public function setTown(string $town): self
     {
         $this->town = $town;
 
         return $this;
     }
+
 }
