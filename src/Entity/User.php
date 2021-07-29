@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -54,6 +56,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="text", nullable=true)
      */
     private $bio;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Dog::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $dogs;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Stroll::class, inversedBy="users")
+     */
+    private $strolls;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Town::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $town;
+
+    public function __construct()
+    {
+        $this->dogs = new ArrayCollection();
+        $this->strolls = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -188,6 +212,72 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBio(?string $bio): self
     {
         $this->bio = $bio;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dog[]
+     */
+    public function getDogs(): Collection
+    {
+        return $this->dogs;
+    }
+
+    public function addDog(Dog $dog): self
+    {
+        if (!$this->dogs->contains($dog)) {
+            $this->dogs[] = $dog;
+            $dog->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDog(Dog $dog): self
+    {
+        if ($this->dogs->removeElement($dog)) {
+            // set the owning side to null (unless already changed)
+            if ($dog->getUser() === $this) {
+                $dog->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Stroll[]
+     */
+    public function getStrolls(): Collection
+    {
+        return $this->strolls;
+    }
+
+    public function addStroll(Stroll $stroll): self
+    {
+        if (!$this->strolls->contains($stroll)) {
+            $this->strolls[] = $stroll;
+        }
+
+        return $this;
+    }
+
+    public function removeStroll(Stroll $stroll): self
+    {
+        $this->strolls->removeElement($stroll);
+
+        return $this;
+    }
+
+    public function getTown(): ?Town
+    {
+        return $this->town;
+    }
+
+    public function setTown(?Town $town): self
+    {
+        $this->town = $town;
 
         return $this;
     }
