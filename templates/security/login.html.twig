@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter{% endblock %}
+
+{% block container %}
+<section class="py-5">
+  <div class="container px-5">
+    <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+      <div class="text-center mb-5">
+        <h1 class="fw-bolder">Se connecter</h1>
+      </div>
+      <div class="row gx-5 justify-content-center">
+        <div class="col-lg-8 col-xl-6">
+          <form method="post">
+            {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            {% if app.user %}
+            <div class="mb-3">
+              Vous êtes connecté.e en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se
+                déconnecter</a>
+            </div>
+            {% endif %}
+
+            <div class="form-floating mb-3">
+              <input id="email" type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                class="form-control" autocomplete="email" placeholder="Adresse mail" data-sb-validations="required" />
+              <label for="email">Adresse mail</label>
+              <div class="invalid-feedback" data-sb-feedback="name:required">Une adresse mail est requise.</div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input id="password" type="password" name="password" id="inputPassword" class="form-control"
+                autocomplete="current-password" placeholder="Mot de passe" data-sb-validations="required" />
+              <label for="password">Mot de passe</label>
+              <div class="invalid-feedback" data-sb-feedback="name:required">Entrez votre mot de passe.</div>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <div class="d-grid">
+              <button class="btn-primary btn-lg disabled" id="submitButton" type="submit">S'enregistrer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
