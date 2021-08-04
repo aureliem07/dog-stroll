@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dog Stroll{% endblock %}
+
+{% block container %}
+
+<section class="py-5">
+  <div class="container px-5 my-5">
+    <div class="row gx-5">
+      {# <div class="col-lg-3">
+        <div class="d-flex align-items-center mt-lg-5 mb-4">
+          <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+          <div class="ms-3">
+            <div class="fw-bold">Valerie Luna</div>
+            <div class="text-muted">News, Business</div>
+          </div>
+        </div>
+      </div> #}
+      <div class="col-lg-9">
+        <!-- Post content-->
+        <article>
+          <!-- Post header-->
+          <header class="mb-4">
+            <!-- Post title-->
+            <h1 class="fw-bolder mb-1">{{ stroll.title }}</h1>
+            <!-- Post meta content-->
+            <p class="card-text mb-0 text-secondary">Départ : {{ stroll.startTime|date('d-m-Y H:i') }}</p>
+            <p class="card-text mb-0 text-secondary">Fin : {{ stroll.startTime|date('d-m-Y H:i') }}</p>
+            <p class="card-text text-secondary">{{ stroll.town }}</p>
+          </header>
+          <!-- Preview image figure-->
+          {# <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg"
+              alt="..." /></figure> #}
+          <!-- Post content-->
+          <section class="mb-5">
+            <p class="fs-5 mb-4">{{ stroll.description }}</p>
+          </section>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
