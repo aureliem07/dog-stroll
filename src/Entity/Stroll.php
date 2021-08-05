@@ -30,7 +30,7 @@ class Stroll
     private $startTime;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $endTime;
 
@@ -53,6 +53,11 @@ class Stroll
      * @ORM\Column(type="string", length=50)
      */
     private $town;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $validate;
 
     public function __construct()
     {
@@ -159,6 +164,18 @@ class Stroll
     public function setTown(string $town): self
     {
         $this->town = $town;
+
+        return $this;
+    }
+
+    public function getValidate(): ?bool
+    {
+        return $this->validate;
+    }
+
+    public function setValidate(bool $validate): self
+    {
+        $this->validate = $validate;
 
         return $this;
     }
