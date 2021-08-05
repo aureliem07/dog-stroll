@@ -12,14 +12,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StrollController extends AbstractController
 {
-    #[Route('/évènement/{id}', name: 'stroll')]
+    #[Route('/event/{id}', name: 'stroll')]
     public function stroll(int $id, StrollRepository $repo): Response
     {     
         $stroll = $repo->find($id);
 
         $users = $stroll->getUsers();
 
-        return $this->render('home/stroll.html.twig', [
+        return $this->render('stroll/stroll.html.twig', [
             'stroll' => $stroll,
             'users' => $users
         ]);

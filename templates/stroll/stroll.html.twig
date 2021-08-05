@@ -20,8 +20,7 @@
         <article>
           <header class="mb-4">
             <h1 class="fw-bolder mb-1">{{ stroll.title }}</h1>
-            <p class="card-text mb-0 text-secondary">Départ : {{ stroll.startTime|date('d-m-Y H:i') }}</p>
-            <p class="card-text mb-0 text-secondary">Fin : {{ stroll.startTime|date('d-m-Y H:i') }}</p>
+            <p class="card-text mb-0 text-secondary">Le {{ stroll.startTime|date('d-m-Y') }} de {{ stroll.startTime|date('H:i') }} à {{ stroll.startTime|date('H:i') }}</p>
             <p class="card-text text-secondary">{{ stroll.town }}</p>
           </header>
           {# <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg"
@@ -30,7 +29,7 @@
             <p class="fs-5 mb-4">{{ stroll.description }}</p>
           </section>
           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a href="{{ path('add_user_stroll', {'stroll': stroll.id, 'user': app.user.id}) }}" class="btn btn-primary">S'inscrire</a>
+            <a href="{{ path('add_user_stroll', {'stroll': stroll.id, 'user': app.user.id}) }}" class="btn btn-warning">S'inscrire</a>
           {% endif %}
         </article>
       </div>
@@ -40,7 +39,7 @@
             <h5 class="fw-bolder mb-1">Les inscrits</h5> 
           </header>
           {% for user in users %}
-            <p>{{ user.nickname }}</p>            
+            <p class="mb-0">{{ user.nickname }}</p>            
           {% endfor %}
         </section>
     </div>
