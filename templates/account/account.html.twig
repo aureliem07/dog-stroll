@@ -14,8 +14,9 @@
             <h4>{{ app.user.lastName}} {{ app.user.firstName}}</h4>
             <p class="text-secondary mb-1">{{ app.user.nickname}}</p>
             <p class="text-muted font-size-sm">{{ app.user.town}}</p>
+            <a class="btn btn-warning" href="{{ path('add_dog', {'user': app.user.id}) }}">Ajouter un chien</a>
           </div>
-      </div>
+        </div>
       </div>
     </div>
   </div>
@@ -77,11 +78,18 @@
           </div>
         </div>
         <hr>        
-        {# <div class="row">
-          <div class="col-sm-12">
-            <a class="btn btn-warning" href="#">Modifier</a>
+        <div class="row">
+          <div class="col-6 text-center">
+            <a class="btn btn-success" href="#">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
           </div>
-        </div> #}
+          <div class="col-6 text-center">
+            <a class="btn btn-danger" href="#">
+              <i class="fas fa-trash-alt"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -91,15 +99,28 @@
     <div class="card shadow border-0">
     <div class="card-body">
         <div class="d-flex flex-column align-items-center text-center">
-          <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1512&q=80" alt="profil" class="rounded-circle" width="150">
+          <img src="https://images.unsplash.com/photo-1561754050-9a1ee0470c73?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1575&q=80" alt="profil" class="rounded-circle" width="150">
           <div class="mt-3">
             <h4>{{ dog.name}}</h4>
-            <p class="text-secondary mb-1">{{ dog.birthYear}}</p>
-            <p class="text-muted font-size-sm">{{ dog.breed}}</p>
-            <p class="text-muted font-size-sm">{{ dog.sex}}</p>
-            <p class="text-muted font-size-sm">{{ dog.bio}}</p>
+            <p class="text-secondary font-size-sm my-0">{{ dog.birthYear}}</p>
+            <p class="text-secondary font-size-sm my-0">{{ dog.breed}}</p>
+            <p class="text-secondary font-size-sm my-0">{{ dog.sex}}</p>
+            <p class="text-secondary font-size-sm my-0">{{ dog.bio}}</p>
           </div>
-      </div>
+        </div>
+        <div class="row">
+          <div class="col-6 text-center">
+            <a class="btn btn-success" href="{{ path('edit_dog', {'dog': dog.id}) }}">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
+          </div>
+          <div class="col-6 text-center">
+            <a class="btn btn-danger" href="{{ path('remove_dog', {'dog': dog.id}) }}">
+              <i class="fas fa-trash-alt"></i>
+            </a>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>

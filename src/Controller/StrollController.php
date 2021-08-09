@@ -18,7 +18,6 @@ class StrollController extends AbstractController
     public function stroll(int $id, StrollRepository $repo): Response
     {     
         $stroll = $repo->find($id);
-
         $users = $stroll->getUsers();
 
         return $this->render('stroll/stroll.html.twig', [
@@ -59,5 +58,4 @@ class StrollController extends AbstractController
             'id' => $stroll->getId()
         ]);
     }
-
 }

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dog Stroll{% endblock %}
+
+{% block container %}
+
+<section class="py-5">
+  <div class="container px-5">
+    <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+      <div class="text-center mb-5">
+        <h1 class="fw-bolder">Modifier un animal</h1>
+      </div>
+
+      <div class="row gx-5 justify-content-center">
+        <div class="col-lg-8 col-xl-6">
+          {{ form_start(dogForm) }}
+          <div class="mb-3">
+            {{ form_widget(dogForm.name, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Nom'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(dogForm.birthYear, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Année de naissance'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(dogForm.breed, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Race'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(dogForm.sex, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Sexe'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(dogForm.bio, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Décrivez votre chien'
+              }
+            }) }}
+          </div>
+          <button class="btn btn-warning" id="submitButton" type="submit">Ajouter</button>
+        </div>
+        {{ form_end(dogForm) }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
