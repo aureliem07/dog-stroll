@@ -80,12 +80,12 @@
         <hr>        
         <div class="row">
           <div class="col-6 text-center">
-            <a class="btn btn-success" href="#">
+            <a class="btn btn-success" href="{{ path('edit_account', {'user': app.user.id}) }}">
               <i class="fas fa-pencil-alt"></i>
             </a>
           </div>
           <div class="col-6 text-center">
-            <a class="btn btn-danger" href="#">
+            <a class="btn btn-danger" href="{{ path('remove_account', {'user': app.user.id}) }}">
               <i class="fas fa-trash-alt"></i>
             </a>
           </div>

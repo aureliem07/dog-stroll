@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dog Stroll{% endblock %}
+
+{% block container %}
+
+<section class="py-5">
+  <div class="container px-5">
+    <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+      <div class="text-center mb-5">
+        <h1 class="fw-bolder">Modifier mon compte</h1>
+      </div>
+
+      <div class="row gx-5 justify-content-center">
+        <div class="col-lg-8 col-xl-6">
+          {{ form_start(userForm) }}
+          <div class="mb-3">
+            {{ form_widget(userForm.email, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Adresse mail'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(userForm.nickname, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Pseudo'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(userForm.firstName, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Prénom'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(userForm.lastName, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Nom'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(userForm.town, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Ville'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(userForm.bio, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Ecrire un petit texte sur soi'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(userForm.plainPassword, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Mot de passe',
+                label: 'Password'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(userForm.agreeTerms) }}
+            J'accepte les conditions d'utilisation
+          </div>
+
+          {# <div class="d-grid"> #}
+            <button class="btn btn-warning" id="submitButton" type="submit">Valider les modifications</button>
+          </div>
+          {{ form_end(userForm) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
