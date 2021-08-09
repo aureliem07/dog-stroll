@@ -18,4 +18,5 @@ class HomeController extends AbstractController
             'strolls' => $strolls
         ]);
     }
+    
 }

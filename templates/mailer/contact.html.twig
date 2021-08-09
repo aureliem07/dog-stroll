@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dog Stroll{% endblock %}
+
+{% block container %}
+
+<section class="py-5">
+  <div class="container px-5">
+    <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+      <div class="text-center mb-5">
+        <h1 class="fw-bolder">Formulaire de contact</h1>
+      </div>
+
+      <div class="row gx-5 justify-content-center">
+        <div class="col-lg-8 col-xl-6">
+          {{ form_start(contactForm) }}
+          <div class="mb-3">
+            {{ form_widget(contactForm.email, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Email'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(contactForm.subject, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Objet'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
+            {{ form_widget(contactForm.content, {
+              'attr': {
+                'class':'form-control',
+                'placeholder':'Contenu du message'
+              }
+            }) }}
+          </div>
+          <button class="btn btn-warning" id="submitButton" type="submit">Envoyer</button>
+        </div>
+        {{ form_end(contactForm) }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
