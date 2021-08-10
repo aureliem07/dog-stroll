@@ -4,9 +4,11 @@ namespace App\Form;
 
 use App\Entity\Dog;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class DogType extends AbstractType
 {
@@ -23,6 +25,20 @@ class DogType extends AbstractType
                 ]
             ])
             ->add('bio')
+            ->add('picture', FileType::class, [
+                'label' => false,
+                'mapped' => false,
+                'required' => true,
+                'constraints' => [
+                    new File([ 
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png'
+                        ],
+                        'mimeTypesMessage' => "Ce format n'est pas valide.",
+                    ])
+                ],
+            ])
         ;
     }
 

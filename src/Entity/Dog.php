@@ -48,6 +48,11 @@ class Dog
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pictureFilename;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +126,18 @@ class Dog
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPictureFilename(): ?string
+    {
+        return $this->pictureFilename;
+    }
+
+    public function setPictureFilename(?string $pictureFilename): self
+    {
+        $this->pictureFilename = $pictureFilename;
 
         return $this;
     }

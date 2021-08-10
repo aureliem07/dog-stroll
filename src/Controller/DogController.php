@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Dog;
 use App\Entity\User;
 use App\Form\DogType;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class DogController extends AbstractController
 {
     #[Route('/add-dog/{user}', name: 'add_dog')]
-    public function addDog(EntityManagerInterface $em, User $user, Request $request): Response
+    public function addDog(FileUploader $fileUploader, EntityManagerInterface $em, User $user, Request $request): Response
     {
         $dog = new Dog();
         $form = $this->createForm(DogType::class, $dog);
@@ -24,6 +25,13 @@ class DogController extends AbstractController
             $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
             $user = $this->getUser();
             $dog->setUser($user);
+
+            $pictureFile = $form->get('picture')->getData();
+            if ($pictureFile) {
+                $pictureFileName = $fileUploader->upload($pictureFile);
+                $dog->setPictureFilename($pictureFileName);
+            }
+
             $em->persist($dog);
             $em->flush();
 

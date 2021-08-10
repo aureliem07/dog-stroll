@@ -74,6 +74,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $town;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pictureFilename;
+
     public function __construct()
     {
         $this->dogs = new ArrayCollection();
@@ -279,6 +284,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTown(string $town): self
     {
         $this->town = $town;
+
+        return $this;
+    }
+
+    public function getPictureFilename(): ?string
+    {
+        return $this->pictureFilename;
+    }
+
+    public function setPictureFilename(?string $pictureFilename): self
+    {
+        $this->pictureFilename = $pictureFilename;
 
         return $this;
     }

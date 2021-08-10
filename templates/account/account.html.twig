@@ -9,9 +9,9 @@
     <div class="card shadow border-0">
     <div class="card-body">
         <div class="d-flex flex-column align-items-center text-center">
-          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="profil" class="rounded-circle" width="150">
+          <img src="{{ asset('uploads/' ~ app.user.pictureFilename) }}" alt="profil" class="rounded-circle" width="150">
           <div class="mt-3">
-            <h4>{{ app.user.lastName}} {{ app.user.firstName}}</h4>
+            <h4> {{ app.user.firstName}} {{ app.user.lastName}}</h4>
             <p class="text-secondary mb-1">{{ app.user.nickname}}</p>
             <p class="text-muted font-size-sm">{{ app.user.town}}</p>
             <a class="btn btn-warning" href="{{ path('add_dog', {'user': app.user.id}) }}">Ajouter un chien</a>
@@ -99,7 +99,7 @@
     <div class="card shadow border-0">
     <div class="card-body">
         <div class="d-flex flex-column align-items-center text-center">
-          <img src="https://images.unsplash.com/photo-1561754050-9a1ee0470c73?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1575&q=80" alt="profil" class="rounded-circle" width="150">
+          <img src="{{ asset('uploads/' ~ dog.pictureFilename) }}" alt="profil" class="rounded-circle" width="150">
           <div class="mt-3">
             <h4>{{ dog.name}}</h4>
             <p class="text-secondary font-size-sm my-0">{{ dog.birthYear}}</p>
