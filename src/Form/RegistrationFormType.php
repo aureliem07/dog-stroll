@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
             ->add('picture', FileType::class, [
                 'label' => false,
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'constraints' => [
                     new File([ 
                         'mimeTypes' => [

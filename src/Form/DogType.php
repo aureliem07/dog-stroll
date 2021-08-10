@@ -20,15 +20,15 @@ class DogType extends AbstractType
             ->add('breed')
             ->add('sex', ChoiceType::class, [
                 'choices'  => [
-                    'Femelle' => 0,
-                    'Mâle' => 1
+                    'Femelle' => 'Femelle',
+                    'Mâle' => 'Mâle'
                 ]
             ])
             ->add('bio')
             ->add('picture', FileType::class, [
                 'label' => false,
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'constraints' => [
                     new File([ 
                         'mimeTypes' => [

@@ -23,6 +23,13 @@
             }) }}
           </div>
           <div class="mb-3">
+            {{ form_widget(dogForm.picture, {
+              'attr': {
+                'class':'form-control'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
             {{ form_widget(dogForm.birthYear, {
               'attr': {
                 'class':'form-control',
