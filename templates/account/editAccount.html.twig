@@ -55,6 +55,13 @@
             }) }}
           </div>
           <div class="mb-3">
+            {{ form_widget(userForm.picture, {
+              'attr': {
+                'class':'form-control'
+              }
+            }) }}
+          </div>
+          <div class="mb-3">
             {{ form_widget(userForm.bio, {
               'attr': {
                 'class':'form-control',

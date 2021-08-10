@@ -7,17 +7,19 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
   <title>{% block title %}Dog Stroll{% endblock %}</title>
-  {% block stylesheets %}
+
   <!-- Favicon-->
   {# <link rel="icon" type="" href="#" /> #}
   <!-- Bootstrap icons-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-  <!-- Core theme CSS (includes Bootstrap)-->
-  {# <link href="{{ asset("css/styles.css") }}" rel="stylesheet" /> #}
-  {% endblock %}
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  {% block stylesheets %} {% endblock %}
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -57,9 +59,8 @@
       </div>
     </nav>
 
-    {% block container %}
+    {% block container %} {% endblock %}
 
-    {% endblock %}
   </main>
   <!-- Footer-->
   <footer class="bg-dark py-4 mt-auto">
@@ -79,11 +80,15 @@
     </div>
   </footer>
   <!-- Bootstrap core JS-->
-  {% block javascripts %}
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin="">
+  </script>
+  <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
-  {% endblock %}
+  {% block javascripts %} {% endblock %}
 
 </body>
 

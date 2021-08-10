@@ -58,4 +58,11 @@ class StrollController extends AbstractController
             'id' => $stroll->getId()
         ]);
     }
+
+    #[Route('/jstest', name: 'jstest')]
+    public function stroll1(): Response
+    {     
+ 
+        return $this->render('stroll/jstest.html.twig');
+    }
 }

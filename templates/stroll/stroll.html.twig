@@ -3,46 +3,52 @@
 {% block title %}Dog Stroll{% endblock %}
 
 {% block container %}
-
 <section class="py-5">
   <div class="container px-5 my-5">
     <div class="row gx-5">
-      {# <div class="col-lg-3">
-        <div class="d-flex align-items-center mt-lg-5 mb-4">
-          <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
-          <div class="ms-3">
-            <div class="fw-bold">Valerie Luna</div>
-            <div class="text-muted">News, Business</div>
-          </div>
-        </div>
-      </div> #}
+
       <div class="col-lg-8">
         <article>
           <header class="mb-4">
             <h1 class="fw-bolder mb-1">{{ stroll.title }}</h1>
-            <p class="card-text mb-0 text-secondary">Le {{ stroll.startTime|date('d-m-Y') }} de {{ stroll.startTime|date('H:i') }} à {{ stroll.startTime|date('H:i') }}</p>
+            <p class="card-text mb-0 text-secondary">Le {{ stroll.startTime|date('d-m-Y') }} de
+              {{ stroll.startTime|date('H:i') }} à {{ stroll.startTime|date('H:i') }}</p>
             <p class="card-text text-secondary">{{ stroll.town }}</p>
           </header>
-          {# <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg"
-              alt="..." /></figure> #}
+          <div id="mapid" class="stroll-map" data-startingpoint="{{ stroll.startingPoint|url_encode }}"></div>
           <section class="mb-5">
             <p class="fs-5 mb-4">{{ stroll.description }}</p>
           </section>
           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a href="{{ path('add_user_stroll', {'stroll': stroll.id, 'user': app.user.id}) }}" class="btn btn-warning">S'inscrire</a>
+          <a href="{{ path('add_user_stroll', {'stroll': stroll.id, 'user': app.user.id}) }}"
+            class="btn btn-warning">S'inscrire</a>
           {% endif %}
         </article>
       </div>
+
       <div class="col-lg-4">
         <section>
           <header class="mb-4">
-            <h5 class="fw-bolder mb-1">Les inscrits</h5> 
+            <h5 class="fw-bolder mb-1">Les inscrits</h5>
           </header>
           {% for user in users %}
-            <p class="mb-0">{{ user.nickname }}</p>            
+          <p class="mb-0">{{ user.nickname }}</p>
           {% endfor %}
         </section>
+      </div>
     </div>
-  </div>
 </section>
+{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="">
+{% endblock %}
+{% block javascripts %}
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin="">
+  </script>
+  <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 {% endblock %}
