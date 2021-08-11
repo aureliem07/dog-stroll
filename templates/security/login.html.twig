@@ -36,11 +36,17 @@
               <label for="password">Mot de passe</label>
               <div class="invalid-feedback" data-sb-feedback="name:required">Entrez votre mot de passe.</div>
             </div>
+
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            
             <div class="d-grid">
               <button class="btn-primary btn-lg disabled" id="submitButton" type="submit">S'enregistrer</button>
             </div>
           </form>
+
+          <div class="mt-3 text-center">
+            Vous êtes n'avez pas encore de compte : <a href="{{ path('app_register') }}">Créer un compte</a>
+          </div>
         </div>
       </div>
     </div>

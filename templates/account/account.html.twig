@@ -14,7 +14,10 @@
             <h4> {{ app.user.firstName}} {{ app.user.lastName}}</h4>
             <p class="text-secondary mb-1">{{ app.user.nickname}}</p>
             <p class="text-muted font-size-sm">{{ app.user.town}}</p>
-            <a class="btn btn-warning" href="{{ path('add_dog', {'user': app.user.id}) }}">Ajouter un chien</a>
+            {% if not is_granted('ROLE_ADMIN') %}
+              <a class="btn btn-warning" href="{{ path('add_dog', {'user': app.user.id}) }}">Ajouter un chien</a>
+            {% endif %}
+            <a class="btn btn-danger" href="{{ path('app_logout') }}">Se déconnecter</a>
           </div>
         </div>
       </div>
