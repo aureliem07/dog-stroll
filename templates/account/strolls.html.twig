@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dog Stroll{% endblock %}
+
+{% block container %}
+
+<section class="py-5">
+  <div class="container px-5 my-5">
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-8 col-xl-6">
+        <div class="text-center">
+          <h2 class="fw-bolder">Mes évènements</h2>
+          {# <p class="lead fw-normal text-muted mb-5"></p> #}
+        </div>
+      </div>
+    </div>
+    <div class="col text-center">
+      <a class="btn btn-warning" href="{{ path('add_stroll') }}">Ajouter un évènement</a>
+    </div>
+    <div class="row gx-5">
+      <div class="my-5">
+        <div class="card h-100 shadow border-0">
+          <div class="card-body p-4">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Validé</th>
+                  <th scope="col">Titre</th>
+                  <th scope="col">Départ</th>
+                  <th scope="col">Lieu</th>
+                  <th scope="col">Edit</th>
+                  <th scope="col">Supp</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for stroll in strolls %}
+                <tr>
+                  <th scope="row">
+                    {% if stroll.validate == false %}
+                    <i class="fas fa-times text-danger"></i>
+                    {% else %}
+                    <i class="fas fa-check text-success"></i>
+                    {% endif %}
+                  </th>
+                  <td>
+                    <a class="text-decoration-none link-primary" href="{{ path('stroll',{'id': stroll.id} ) }}">
+                      <p class="card-title mb-3">{{ stroll.title }}</p>
+                    </a>
+                  </td>
+                  <td>
+                    <p class="card-text mb-0 text-secondary">Le {{ stroll.startTime|date('d-m-Y') }} de
+                      {{ stroll.startTime|date('H:i') }} à {{ stroll.startTime|date('H:i') }}</p>
+                  </td>
+                  <td>
+                    <p class="card-text text-secondary mb-0">{{ stroll.town }}</p>
+                  </td>
+                  <td>
+                    {% if stroll.validate == false %}
+                    <a class="btn btn-success" href="{{ path('edit_stroll', {'stroll': stroll.id}) }}">
+                      <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if stroll.validate == false %}
+                    <a class="btn btn-danger" href="{{ path('remove_stroll', {'stroll': stroll.id}) }}">
+                      <i class="fas fa-trash-alt"></i>
+                    </a>
+                    {% endif %}
+
+                  </td>
+                </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

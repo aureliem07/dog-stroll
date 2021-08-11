@@ -11,6 +11,7 @@
         <article>
           <header class="mb-4">
             <h1 class="fw-bolder mb-1">{{ stroll.title }}</h1>
+            <p class="card-text text-secondary mb-3">Créé par : {{ stroll.createdBy.nickname }}</p>
             <p class="card-text mb-0 text-secondary">Le {{ stroll.startTime|date('d-m-Y') }} de
               {{ stroll.startTime|date('H:i') }} à {{ stroll.startTime|date('H:i') }}</p>
             <p class="card-text text-secondary">{{ stroll.town }}</p>
@@ -20,34 +21,35 @@
             <p class="fs-5 mb-4">{{ stroll.description }}</p>
           </section>
           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a href="{{ path('subscribe_stroll', {'stroll': stroll.id, 'user': app.user.id}) }}" class="btn btn-warning mb-5">S'inscrire</a>
+          <a href="{{ path('subscribe_stroll', {'stroll': stroll.id, 'user': app.user.id}) }}"
+            class="btn btn-warning mb-5">S'inscrire</a>
           {% endif %}
         </article>
       </div>
 
       <div class="col-lg-4 bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
-          <header class="mb-4">
-            <h5 class="fw-bolder mb-1">Les inscrits</h5>
-          </header>
-          <ul>
-            {% for subscriber in subscribers %}
-            <li class="mb-0">{{ subscriber.nickname }}</li>
-            {% endfor %}
-          </ul>
+        <header class="mb-4">
+          <h5 class="fw-bolder mb-1">Les inscrits</h5>
+        </header>
+        <ul>
+          {% for subscriber in subscribers %}
+          <li class="mb-0">{{ subscriber.nickname }}</li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
 </section>
 {% endblock %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin="">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin="">
 {% endblock %}
 {% block javascripts %}
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin="">
-  </script>
-  <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin="">
+</script>
+<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 {% endblock %}

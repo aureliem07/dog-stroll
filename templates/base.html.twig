@@ -43,9 +43,9 @@
               <li class="nav-item {% if route_name == "account" %}active{% endif %}">
                 <a class="nav-link" href="{{ path('account') }}">Mon compte</a>
               </li>
-              {# <li class="nav-item {% if route_name == "#" %}active{% endif %}">
-                <a class="nav-link" href="{{ path('#') }}">Mes évènements</a>
-              </li> #}
+              <li class="nav-item {% if route_name == "strolls" %}active{% endif %}">
+                <a class="nav-link" href="{{ path('strolls') }}">Mes évènements</a>
+              </li>
             {% endif %}
 
             {% if is_granted('ROLE_ADMIN') %}

@@ -13,16 +13,34 @@ class StrollType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title', null, ['attr' => [
+                'class' => 'form-control',
+                'placeholder' => 'Titre'
+            ]])
             ->add('startTime', DateTimeType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
                 'widget' => 'single_text'
             ])
             ->add('endTime', DateTimeType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
                 'widget' => 'single_text'
             ])
-            ->add('startingPoint')
-            ->add('description')
-            ->add('town')
+            ->add('startingPoint', null, ['attr' => [
+                'class' => 'form-control',
+                'placeholder' => 'Adresse point de départ (numéro + voie + code postal + ville)'
+            ]])
+            ->add('description', null, ['attr' => [
+                'class' => 'form-control',
+                'placeholder' => 'Détails et description de l\'évènement'
+            ]])
+            ->add('town', null, ['attr' => [
+                'class' => 'form-control',
+                'placeholder' => 'Ville'
+            ]])
 
         ;
     }

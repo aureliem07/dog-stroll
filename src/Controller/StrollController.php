@@ -4,10 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Stroll;
-use App\Form\StrollType;
 use App\Repository\StrollRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,32 +21,6 @@ class StrollController extends AbstractController
         return $this->render('stroll/stroll.html.twig', [
             'stroll' => $stroll,
             'subscribers' => $subscribers
-        ]);
-    }
-
-    #[Route('/add-stroll', name: 'add_stroll')]
-    public function addStroll(EntityManagerInterface $em, Request $request): Response
-    {     
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $stroll = new Stroll();
-        $form = $this->createForm(StrollType::class, $stroll);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-
-            $stroll->setCreatedBy($this->get('security.token_storage')->getToken()->getUser());
-
-            if ($form->isValid()) {
-                $stroll->setValidate(false);
-                $em->persist($stroll);
-                $em->flush();
-
-                return $this->redirectToRoute('home');
-            }
-        }
-
-        return $this->render('stroll/addStroll.html.twig', [
-            'strollForm' => $form->createView(),
         ]);
     }
 

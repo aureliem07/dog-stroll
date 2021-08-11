@@ -42,17 +42,7 @@ class DogController extends AbstractController
             'dogForm' => $form->createView()
         ]);
     }
-
-    #[Route('/remove-dog/{dog}', name: 'remove_dog')]
-    public function removeDog(EntityManagerInterface $em, Dog $dog): Response
-    {
-        $em->remove($dog);
-        $em->flush();
-            
-        return $this->redirectToRoute('account'); 
-        
-    }
-
+    
     #[Route('/edit-dog/{dog}', name: 'edit_dog')]
     public function editDog(EntityManagerInterface $em, Dog $dog, Request $request): Response
     {
@@ -68,6 +58,16 @@ class DogController extends AbstractController
         return $this->render('dog/editDog.html.twig', [
             'dogForm' => $form->createView()
         ]);
+        
+    }
+
+    #[Route('/remove-dog/{dog}', name: 'remove_dog')]
+    public function removeDog(EntityManagerInterface $em, Dog $dog): Response
+    {
+        $em->remove($dog);
+        $em->flush();
+            
+        return $this->redirectToRoute('account'); 
         
     }
 
