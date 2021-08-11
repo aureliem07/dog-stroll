@@ -20,8 +20,7 @@
             <p class="fs-5 mb-4">{{ stroll.description }}</p>
           </section>
           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-          <a href="{{ path('add_user_stroll', {'stroll': stroll.id, 'user': app.user.id}) }}"
-            class="btn btn-warning">S'inscrire</a>
+            <a href="{{ path('add_user_stroll', {'stroll': stroll.id, 'user': app.user.id}) }}" class="btn btn-warning">S'inscrire</a>
           {% endif %}
         </article>
       </div>

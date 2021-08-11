@@ -1,3 +1,14 @@
 .stroll-map {
   height: 200px;
 }
+
+.profilePicture {
+  color: #80b918;
+  font-size: 10em;
+}
+
+.dogPicture {
+  background-color: #80b918;
+  color: white;
+  font-size: 9em;
+}

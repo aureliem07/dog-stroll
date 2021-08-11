@@ -15,82 +15,33 @@
         <div class="col-lg-8 col-xl-6">
           {{ form_start(registrationForm) }}
           <div class="mb-3">
-            {{ form_widget(registrationForm.email, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Adresse mail'
-              }
-            }) }}
+            {{ form_widget(registrationForm.email) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(registrationForm.nickname, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Pseudo'
-              }
-            }) }}
+            {{ form_widget(registrationForm.nickname) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(registrationForm.firstName, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Prénom'
-              }
-            }) }}
+            {{ form_widget(registrationForm.firstName) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(registrationForm.lastName, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Nom'
-              }
-            }) }}
+            {{ form_widget(registrationForm.lastName) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(registrationForm.town, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Ville'
-              }
-            }) }}
+            {{ form_widget(registrationForm.town) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(registrationForm.picture, {
-              'attr': {
-                'class':'form-control'
-              }
-            }) }}
+            <label>Sélectionner une photo au format jpeg ou png :</label>
+            {{ form_widget(registrationForm.picture) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(registrationForm.bio, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Ecrire un petit texte sur soi'
-              }
-            }) }}
+            {{ form_widget(registrationForm.bio) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(registrationForm.plainPassword, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Mot de passe',
-                label: 'Password'
-              }
-            }) }}
+            {{ form_widget(registrationForm.plainPassword) }}
           </div>
-          <div class="mb-3">
-            {{ form_widget(registrationForm.agreeTerms) }}
-            J'accepte les conditions d'utilisation
-          </div>
-
-          {# <div class="d-grid"> #}
             <button class="btn btn-warning" id="submitButton" type="submit">S'enregistrer</button>
           </div>
           {{ form_end(registrationForm) }}
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 {% endblock %}
