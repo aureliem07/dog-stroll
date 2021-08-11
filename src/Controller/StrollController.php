@@ -14,31 +14,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StrollController extends AbstractController
 {
-    #[Route('/event/{id}', name: 'stroll')]
+    #[Route('/stroll/{id}', name: 'stroll')]
     public function stroll(int $id, StrollRepository $repo): Response
     {     
         $stroll = $repo->find($id);
-        $users = $stroll->getUsers();
+        $subscribers = $stroll->getSubscribers();
 
         return $this->render('stroll/stroll.html.twig', [
             'stroll' => $stroll,
-            'users' => $users
+            'subscribers' => $subscribers
         ]);
     }
 
     #[Route('/add-stroll', name: 'add_stroll')]
     public function addStroll(EntityManagerInterface $em, Request $request): Response
     {     
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $stroll = new Stroll();
         $form = $this->createForm(StrollType::class, $stroll);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $stroll->setValidate(false);
-            $em->persist($stroll);
-            $em->flush();
+        if ($form->isSubmitted()) {
 
-            return $this->redirectToRoute('home');
+            $stroll->setCreatedBy($this->get('security.token_storage')->getToken()->getUser());
+
+            if ($form->isValid()) {
+                $stroll->setValidate(false);
+                $em->persist($stroll);
+                $em->flush();
+
+                return $this->redirectToRoute('home');
+            }
         }
 
         return $this->render('stroll/addStroll.html.twig', [
@@ -46,12 +52,12 @@ class StrollController extends AbstractController
         ]);
     }
 
-    #[Route('/registration-stroll/{stroll}/{user}', name: 'registration_stroll')]
-    public function addUserStroll(Stroll $stroll, User $user, EntityManagerInterface $em): Response
+    #[Route('/subscribe/{stroll}/{user}', name: 'subscribe_stroll')]
+    public function addStrollSubscription(Stroll $stroll, User $user, EntityManagerInterface $em): Response
     {     
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
-        $user->addStroll($stroll);
+        $user->addStrollSubscription($stroll);
         $em->flush();
  
         return $this->redirectToRoute('stroll', [

@@ -20,7 +20,7 @@
             <p class="fs-5 mb-4">{{ stroll.description }}</p>
           </section>
           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a href="{{ path('registration_stroll', {'stroll': stroll.id, 'user': app.user.id}) }}" class="btn btn-warning mb-5">S'inscrire</a>
+            <a href="{{ path('subscribe_stroll', {'stroll': stroll.id, 'user': app.user.id}) }}" class="btn btn-warning mb-5">S'inscrire</a>
           {% endif %}
         </article>
       </div>
@@ -30,8 +30,8 @@
             <h5 class="fw-bolder mb-1">Les inscrits</h5>
           </header>
           <ul>
-            {% for user in users %}
-            <li class="mb-0">{{ user.nickname }}</li>
+            {% for subscriber in subscribers %}
+            <li class="mb-0">{{ subscriber.nickname }}</li>
             {% endfor %}
           </ul>
       </div>

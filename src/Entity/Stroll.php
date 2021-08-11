@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\StrollRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StrollRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=StrollRepository::class)
@@ -45,9 +45,9 @@ class Stroll
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="strolls")
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="strollSubscriptions")
      */
-    private $users;
+    private $subscribers;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -59,9 +59,15 @@ class Stroll
      */
     private $validate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=false, name="created_by", referencedColumnName="id")
+     */
+    private $createdBy;
+
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->subscribers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -132,25 +138,25 @@ class Stroll
     /**
      * @return Collection|User[]
      */
-    public function getUsers(): Collection
+    public function getSubscribers(): Collection
     {
-        return $this->users;
+        return $this->subscribers;
     }
 
-    public function addUser(User $user): self
+    public function addSubscriber(User $user): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
+        if (!$this->subscribers->contains($user)) {
+            $this->subscribers[] = $user;
             $user->addStroll($this);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function removeSubscriber(User $user): self
     {
-        if ($this->users->removeElement($user)) {
-            $user->removeStroll($this);
+        if ($this->subscribers->removeElement($user)) {
+            $user->removeStrollSubscription($this);
         }
 
         return $this;
@@ -176,6 +182,19 @@ class Stroll
     public function setValidate(bool $validate): self
     {
         $this->validate = $validate;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): self
+    {
+    
+        $this->createdBy = $createdBy;
 
         return $this;
     }

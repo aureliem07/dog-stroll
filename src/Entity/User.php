@@ -65,7 +65,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $dogs;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Stroll::class, inversedBy="users")
+     * @ORM\ManyToMany(targetEntity=Stroll::class, inversedBy="subscribers")
+     */
+    private $strollSubscriptions;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Stroll::class, mappedBy="createdBy")
      */
     private $strolls;
 
@@ -82,6 +87,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->dogs = new ArrayCollection();
+        $this->strollSubscriptions = new ArrayCollection();
         $this->strolls = new ArrayCollection();
     }
 
@@ -249,6 +255,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $dog->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Stroll[]
+     */
+    public function getStrollSubsciptions(): Collection
+    {
+        return $this->strollSubscriptions;
+    }
+
+    public function addStrollSubscription(Stroll $stroll): self
+    {
+        if (!$this->strollSubscriptions->contains($stroll)) {
+            $this->strollSubscriptions[] = $stroll;
+        }
+
+        return $this;
+    }
+
+    public function removeStrollSubscription(Stroll $stroll): self
+    {
+        $this->strollSubscriptions->removeElement($stroll);
 
         return $this;
     }
