@@ -46,7 +46,7 @@ class StrollController extends AbstractController
         ]);
     }
 
-    #[Route('/add-user-stroll/{stroll}/{user}', name: 'add_user_stroll')]
+    #[Route('/registration-stroll/{stroll}/{user}', name: 'registration_stroll')]
     public function addUserStroll(Stroll $stroll, User $user, EntityManagerInterface $em): Response
     {     
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -57,12 +57,5 @@ class StrollController extends AbstractController
         return $this->redirectToRoute('stroll', [
             'id' => $stroll->getId()
         ]);
-    }
-
-    #[Route('/jstest', name: 'jstest')]
-    public function stroll1(): Response
-    {     
- 
-        return $this->render('stroll/jstest.html.twig');
     }
 }
