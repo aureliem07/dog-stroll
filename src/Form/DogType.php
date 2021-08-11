@@ -15,17 +15,35 @@ class DogType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('birthYear')
-            ->add('breed')
+            ->add('name', null, ['attr' => [
+                'class' => 'form-control',
+                'placeholder' => 'Nom de l\'animal'
+            ]])
+            ->add('birthYear', null, ['attr' => [
+                'class' => 'form-control',
+                'placeholder' => 'Année de naissance'
+            ]])
+            ->add('breed', null, ['attr' => [
+                'class' => 'form-control',
+                'placeholder' => 'Race'
+            ]])
             ->add('sex', ChoiceType::class, [
                 'choices'  => [
                     'Femelle' => 'Femelle',
                     'Mâle' => 'Mâle'
+                ],
+                'attr' => [
+                    'class' => 'form-control'
                 ]
             ])
-            ->add('bio')
+            ->add('bio', null, ['attr' => [
+                'class' => 'form-control',
+                'placeholder' => 'Décrire votre animal'
+            ]])
             ->add('picture', FileType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
                 'label' => false,
                 'mapped' => false,
                 'required' => false,

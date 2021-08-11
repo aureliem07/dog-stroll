@@ -15,51 +15,24 @@
         <div class="col-lg-8 col-xl-6">
           {{ form_start(dogForm) }}
           <div class="mb-3">
-            {{ form_widget(dogForm.name, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Nom'
-              }
-            }) }}
+            {{ form_widget(dogForm.name) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(dogForm.picture, {
-              'attr': {
-                'class':'form-control'
-              }
-            }) }}
+            <label>Sélectionner une photo au format jpeg ou png :</label>
+            {{ form_widget(dogForm.picture) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(dogForm.birthYear, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Année de naissance'
-              }
-            }) }}
+            {{ form_widget(dogForm.birthYear) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(dogForm.breed, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Race'
-              }
-            }) }}
+            {{ form_widget(dogForm.breed) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(dogForm.sex, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Sexe'
-              }
-            }) }}
+            <label>Sélectionner le sexe :</label>
+            {{ form_widget(dogForm.sex) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(dogForm.bio, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Décrivez votre chien'
-              }
-            }) }}
+            {{ form_widget(dogForm.bio) }}
           </div>
           <button class="btn btn-warning" id="submitButton" type="submit">Ajouter</button>
         </div>
