@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
+use App\Form\EditAccountType;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,14 +26,18 @@ class AccountController extends AbstractController
     }
 
     #[Route('/edit-account/{user}', name: 'edit_account')]
-    public function editAccount(EntityManagerInterface $em, User $user, Request $request): Response
+    public function editAccount(FileUploader $fileUploader, EntityManagerInterface $em, User $user, Request $request): Response
     {
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(EditAccountType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $message = 'Votre compte a été modifié.';
-            $this->addFlash('sucess', $message);
+            $pictureFile = $form->get('picture')->getData();
+            if ($pictureFile) {
+                $pictureFileName = $fileUploader->upload($pictureFile);
+                $user->setPictureFilename($pictureFileName);
+            }
             $em->flush();
+            
             return $this->redirectToRoute('account');
         }
             

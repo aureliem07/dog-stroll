@@ -15,72 +15,25 @@
         <div class="col-lg-8 col-xl-6">
           {{ form_start(userForm) }}
           <div class="mb-3">
-            {{ form_widget(userForm.email, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Adresse mail'
-              }
-            }) }}
+            {{ form_widget(userForm.email) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(userForm.nickname, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Pseudo'
-              }
-            }) }}
+            {{ form_widget(userForm.nickname) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(userForm.firstName, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Prénom'
-              }
-            }) }}
+            {{ form_widget(userForm.firstName) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(userForm.lastName, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Nom'
-              }
-            }) }}
+            {{ form_widget(userForm.lastName) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(userForm.town, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Ville'
-              }
-            }) }}
+            {{ form_widget(userForm.town) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(userForm.picture, {
-              'attr': {
-                'class':'form-control'
-              }
-            }) }}
+            {{ form_widget(userForm.picture) }}
           </div>
           <div class="mb-3">
-            {{ form_widget(userForm.bio, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Ecrire un petit texte sur soi'
-              }
-            }) }}
-          </div>
-          <div class="mb-3">
-            {{ form_widget(userForm.plainPassword, {
-              'attr': {
-                'class':'form-control',
-                'placeholder':'Mot de passe',
-                label: 'Password'
-              }
-            }) }}
-          </div>
-          <div class="mb-3">
-            {{ form_widget(userForm.agreeTerms) }}
-            J'accepte les conditions d'utilisation
+            {{ form_widget(userForm.bio) }}
           </div>
 
           {# <div class="d-grid"> #}

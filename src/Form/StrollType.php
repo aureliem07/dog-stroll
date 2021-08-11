@@ -4,9 +4,9 @@ namespace App\Form;
 
 use App\Entity\Stroll;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class StrollType extends AbstractType
 {
@@ -14,8 +14,12 @@ class StrollType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('startTime')
-            ->add('endTime')
+            ->add('startTime', DateTimeType::class, [
+                'widget' => 'single_text'
+            ])
+            ->add('endTime', DateTimeType::class, [
+                'widget' => 'single_text'
+            ])
             ->add('startingPoint')
             ->add('description')
             ->add('town')
