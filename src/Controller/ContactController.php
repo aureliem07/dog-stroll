@@ -27,7 +27,7 @@ class ContactController extends AbstractController
                 $contact->getContent()
             );
 
-            $info = 'Votre email est bien envoyé!';
+            return $this->redirectToRoute('contact');
         }
         return $this->render('mailer/contact.html.twig', [
             'contactForm' => $form->createView(),
