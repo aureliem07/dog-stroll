@@ -10,7 +10,7 @@
     <div class="card-body">
         <div class="d-flex flex-column align-items-center text-center">
           {% if app.user.pictureFilename %}
-            <img src="{{ asset('uploads/' ~ app.user.pictureFilename) }}" alt="profil" class="rounded-circle" width="150">
+            <img src="{{ asset('uploads/' ~ app.user.pictureFilename) }}" alt="profil" class="rounded-circle" width="150" height="150">
           {% else %}
             <i class="fas fa-portrait profilePicture"></i>
           {% endif %}
@@ -107,7 +107,7 @@
     <div class="card-body">
         <div class="d-flex flex-column align-items-center text-center">
           {% if dog.pictureFilename %}
-            <img src="{{ asset('uploads/' ~ dog.pictureFilename) }}" alt="profil" class="rounded-circle" width="150">
+            <img src="{{ asset('uploads/' ~ dog.pictureFilename) }}" alt="profil" class="rounded-circle" width="150" height="150">
           {% else %}
             <i class="fas fa-dog dogPicture"></i>
           {% endif %}
