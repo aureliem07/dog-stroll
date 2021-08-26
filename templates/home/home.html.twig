@@ -33,11 +33,11 @@
 
     <div class="row gx-5">
       {% for stroll in strolls %}
-      <div class="col-lg-4 my-5">
-        {% if stroll.validate == '1' %}
-        <div class="card h-50 shadow border-0">
+      {% if stroll.validate == '1' %}
+      <div class="col-lg-4 h-50 my-5">
+        <div class="card shadow border-0">
           {# <img class="card-img-top" src="#" alt="..." /> #}
-          <div class="card-body p-4 overflow-hidden">
+          <div class="card-body p-4">
             {# <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div> #}
             <a class="text-decoration-none link-dark stretched-link" href="{{ path('stroll',{'id': stroll.id} ) }}">
               <h5 class="card-title mb-0">{{ stroll.title }}</h5>
@@ -45,7 +45,6 @@
             </a>
             <p class="card-text text-secondary">Le {{ stroll.startTime|date('d-m-Y') }} de {{ stroll.startTime|date('H:i') }} à {{ stroll.startTime|date('H:i') }}</p>
             <p class="card-text text-secondary">Départ : {{ stroll.startingPoint }}</p>
-            <p class="card-text mb-0">{{ stroll.description }}</p>
           </div>
           <div class="d-flex justify-content-end">
             <i class="fas fa-angle-double-right p-2"></i>

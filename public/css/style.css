@@ -12,3 +12,17 @@
   color: white;
   font-size: 9em;
 }
+
+h2 {
+  color: #087316;
+}
+
+.btn-warning {
+  border-color: #EAEE1B;
+  background-color: #EAEE1B;
+}
+
+.btn-warning:hover {
+  border-color: #EAEE1B;
+  background-color: #EDF037;
+}
