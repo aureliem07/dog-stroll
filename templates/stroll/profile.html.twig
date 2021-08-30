@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+
+<div class="row gutters-sm m-5">
+  <div class="col-lg-4 mb-5">
+    <div class="card shadow border-0">
+    <div class="card-body">
+        <div class="d-flex flex-column align-items-center text-center">
+          {% if user.pictureFilename %}
+            <img src="{{ asset('uploads/' ~ user.pictureFilename) }}" alt="profil" class="rounded-circle" width="150" height="150">
+          {% else %}
+            <i class="fas fa-portrait profilePicture"></i>
+          {% endif %}
+          <div class="mt-3">
+            <h4>{{ user.nickname}}</h4>
+            <p class="text-secondary font-size-sm">{{ user.town}}</p>
+            <p class="font-size-sm">{{ user.bio}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8 mb-5">
+    <div class="card shadow border-0">
+      <div class="card-body row">
+      <h3 class="text-center my-4"> Les animaux de {{ user.nickname}}</h3>
+{% for dog in dogs %}
+  <div class="col-lg-6">
+    <div class="card shadow border-0">
+    <div class="card-body">
+        <div class="d-flex flex-column align-items-center text-center">
+          {% if dog.pictureFilename %}
+            <img src="{{ asset('uploads/' ~ dog.pictureFilename) }}" alt="profil" class="rounded-circle" width="150" height="150">
+          {% else %}
+            <i class="fas fa-dog dogPicture"></i>
+          {% endif %}
+          <div class="mt-3">
+            <h4>{{ dog.name}}</h4>
+            <p class="text-secondary font-size-sm my-0">{{ dog.breed}}</p>
+            <p class="text-secondary font-size-sm my-0">{{ dog.birthYear}} - {{ dog.sex}}</p>
+            <p class="font-size-sm my-0">{{ dog.bio}}</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+{% endblock %}

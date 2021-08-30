@@ -31,12 +31,12 @@
         <header class="mb-4">
           <h5 class="fw-bolder mb-1 text-center">Les inscrits</h5>
         </header>
-        <ul class="list-group list-group-flush">
+        <div class="list-group list-group-flush">
           {% for subscriber in subscribers %}
-          <li class="mb-0 list-group-item">
+          <a class="list-group-item list-group-item-action text-decoration-none link-dark stretched-link" href="{{ path('profile',{'id': subscriber.id} ) }}">
             <img src="{{ asset('uploads/' ~ subscriber.pictureFilename) }}" alt="profil" class="rounded-circle" width="50" height="50">
             {{ subscriber.nickname }}
-          </li>
+          </a>
           {% endfor %}
         </ul>
       </div>

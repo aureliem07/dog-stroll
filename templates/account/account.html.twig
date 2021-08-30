@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}S'enregistrer{% endblock %}
-
 {% block container %}
 
 <div class="row gutters-sm m-5">
@@ -15,7 +13,7 @@
             <i class="fas fa-portrait profilePicture"></i>
           {% endif %}
           <div class="mt-3">
-            <h4> {{ app.user.firstName}} {{ app.user.lastName}}</h4>
+            <h4>{{ app.user.firstName}} {{ app.user.lastName}}</h4>
             <p class="text-secondary mb-1">{{ app.user.nickname}}</p>
             <p class="text-muted font-size-sm">{{ app.user.town}}</p>
             {% if not is_granted('ROLE_ADMIN') %}

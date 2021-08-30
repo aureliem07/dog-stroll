@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Stroll;
+use App\Repository\UserRepository;
 use App\Repository\StrollRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,4 +37,17 @@ class StrollController extends AbstractController
             'id' => $stroll->getId()
         ]);
     }
+
+    #[Route('/profile/{id}', name: 'profile')]
+    public function profile(int $id, UserRepository $repo): Response
+    {     
+        $user = $repo->find($id);
+        $dogs = $user->getDogs();
+
+        return $this->render('stroll/profile.html.twig', [
+            'user' => $user,
+            'dogs' => $dogs
+        ]);
+    }
+
 }
